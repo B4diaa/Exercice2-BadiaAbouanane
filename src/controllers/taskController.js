@@ -13,13 +13,13 @@ export default class TaskController {
         if (!title || !description) {
             return res.status(400).json({ error: 'Title and description are required' });
         }
-        const newTask = taskModel.create({ title, description });
+        const newTask = taskModel.addTask({ title, description });
         res.status(201).json(newTask);
     }
 
     static deleteTask(req, res) {
         const { id } = req.params;
-        const success = taskModel.delete(id);
+        const success = taskModel.deleteTask(id);
         if (!success) {
             return res.status(404).json({ error: 'Task not found' });
         }

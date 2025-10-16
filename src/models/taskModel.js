@@ -8,13 +8,13 @@ export default class TaskModel {
         return this.tasks;
     }
 
-    addTask(taskData) {
-        const newTask = { id: this.currentId++, title: taskData.title, done: false };
+    addTask({ title, description }) {
+        const newTask = { id: this.currentId++, title, description, done: false };
         this.tasks.push(newTask);
         return newTask;
     }
 
-    deleteTask(id) {
+    delete(id) {
         const index = this.tasks.findIndex(task => task.id === parseInt(id));
         if (index === -1) return false;
         this.tasks.splice(index, 1);
