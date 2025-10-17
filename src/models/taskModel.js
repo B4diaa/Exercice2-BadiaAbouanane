@@ -42,7 +42,7 @@ export default class TaskModel {
         }
     }
 
-    async delete(id) {
+    async deleteTask(id) {
         try {
             const result = await pool.query(
                 'DELETE FROM tasks WHERE id = $1 RETURNING *',

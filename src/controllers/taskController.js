@@ -21,9 +21,7 @@ export default class TaskController {
         }
         const newTask = await taskModel.addTask({ title, description });
         res.status(201).json(newTask);
-        
-        
-
+    
     }
 
     async deleteTask(req, res) {
