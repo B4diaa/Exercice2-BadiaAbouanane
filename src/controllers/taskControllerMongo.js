@@ -1,8 +1,8 @@
-import Task from '../models/taskModel.js';
+import Task from '../models/taskModelMongo.js';
 
 const taskModel = new Task();
 
-export default class TaskController {
+export default class TaskControllerMongo {
     async listTasks(req, res) {
         try {
             const tasks = await taskModel.getAll();

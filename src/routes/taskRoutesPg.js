@@ -1,8 +1,8 @@
 import express from 'express';
-import TaskController from '../controllers/taskController.js';
+import TaskControllerPg from '../controllers/taskControllerPg.js';
 
 const router = express.Router();
-const taskController = new TaskController();
+const taskController = new TaskControllerPg();
 
 router.use((req, res, next) => {
   console.log(`Requête reçue : ${req.method} ${req.url}`);
