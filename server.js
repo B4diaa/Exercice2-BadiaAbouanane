@@ -4,6 +4,10 @@ import taskRoutesPg from './src/routes/taskRoutesPg.js';
 import taskRoutesMongo from './src/routes/taskRoutesMongo.js';
 import bodyParser from 'body-parser';
 import pool from '../Exercice2-BadiaAbouanane/src/config/db.js';
+import swaggerDocument from './src/docs/swagger.json';
+import swaggerUi from 'swagger-ui-express';
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 dotenv.config();
 
@@ -25,3 +29,4 @@ pool.query('SELECT NOW()', (err, res) => {
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);
 });
+
