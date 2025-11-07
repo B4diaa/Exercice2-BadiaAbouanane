@@ -18,3 +18,4 @@ pool.connect()
     .catch(err => console.error('Connection error', err.stack));
 
 export default pool;
+export const DB_TYPE = process.env.DB_TYPE || 'mongo';
