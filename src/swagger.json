@@ -1,0 +1,124 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "API To-Do List - Exercice 2",
+    "description": "Mini API pour gérer une liste de tâches (CRUD partiel : Create, Read, Delete)",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Badia Abouanane",
+      "url": "https://github.com/B4diaa/Exercice2-BadiaAbouanane"
+    }
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "Serveur local"
+    }
+  ],
+  "paths": {
+    "/todos": {
+      "get": {
+        "summary": "Récupérer toutes les tâches",
+        "responses": {
+          "200": {
+            "description": "Liste des tâches",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Todo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Ajouter une nouvelle tâche",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TodoInput"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Tâche créée",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Todo"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/todos/{id}": {
+      "delete": {
+        "summary": "Supprimer une tâche",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            },
+            "description": "ID de la tâche à supprimer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Tâche supprimée"
+          },
+          "404": {
+            "description": "Tâche non trouvée"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Todo": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1"
+          },
+          "title": {
+            "type": "string",
+            "example": "Acheter du pain"
+          },
+          "completed": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      },
+      "TodoInput": {
+        "type": "object",
+        "required": ["title"],
+        "properties": {
+          "title": {
+            "type": "string",
+            "example": "Acheter du pain"
+          },
+          "completed": {
+            "type": "boolean",
+            "example": false
+          }
+        }
+      }
+    }
+  }
+}
